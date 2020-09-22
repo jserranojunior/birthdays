@@ -1,8 +1,8 @@
 {
   "name": "birthdays",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Verify birthdays",
-  "main": "BirthdaysHelpers.js",
+  "main": "src/BirthdaysHelpers.js",
   "scripts": {
     "test": "jest"
   },
