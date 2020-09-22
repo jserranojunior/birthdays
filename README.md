@@ -1,15 +1,22 @@
 # Birthdays Helpers
+
 > Return birthdays according to date entered
 
 **Features**
+
 - Months
 
 **exemple Month birthdays**
 
-import bithdays from "BithdaysHelpers.js"
-return Bithdays('2020-05-15')
+```sh
+import Birthdays from "BithdaysHelpers.js"
+return Birthdays('2020-05-15')
 // Boulean
+```
 
 **Jest**
+
+```sh
 TDD Jest
 npm run jest
+```
