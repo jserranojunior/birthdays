@@ -15,4 +15,4 @@ VerifyBirthdays.month = (dataInserida) => {
   }
 };
 
-module.exports = VerifyBirthdays;
+export default VerifyBirthdays;
