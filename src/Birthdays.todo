@@ -1,0 +1,9 @@
+! Testes mês Aniversarios
+
+✔ Verifica se a data maior que o mês atual retorna falso @done(20-09-22 13:14)
+✔ Verifica se a data menor que o mês atual retorna falso @done(20-09-22 13:14)
+✔ Verifica se a data atual retorna verdadeiro @done(20-09-22 13:14)
+✔ Verifica se o segundo dia do mês retorna verdadeiro @done(20-09-22 13:14)
+✔ Verifica se o primeiro dia do mês retorna @done(20-09-22 13:14)
+✔ Verifica se no formato br returna true @done(20-09-22 13:14)
+☐ Verifica se o formato US retorna true
