@@ -146,3 +146,33 @@ describe("Births of the Week", () => {
     expect(VerifyBirthdays.week).toBeFalsy();
   });
 });
+
+describe("Births of the Day", () => {
+  test("Check if the birthday today return true", () => {
+    const today = new Date();
+    const VerifyBirthdays = new BirthdaysHelpers(today);
+    expect(VerifyBirthdays.day).toBeTruthy();
+  });
+
+  test("Check if the birthday tomorrow return true", () => {
+    const today = new Date();
+    const Day = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + 1
+    );
+    const VerifyBirthdays = new BirthdaysHelpers(Day);
+    expect(VerifyBirthdays.day).toBeFalsy();
+  });
+
+  test("Check if the birthday yesterday return true", () => {
+    const today = new Date();
+    const Day = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() - 1
+    );
+    const VerifyBirthdays = new BirthdaysHelpers(Day);
+    expect(VerifyBirthdays.day).toBeFalsy();
+  });
+});

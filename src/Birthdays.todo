@@ -16,3 +16,8 @@
 ✔ Verificar se o primeiro dia da proxima semana retorna falso @done(20-10-05 13:12)
 ✔ Verificar se o último dia da semana anterior retorna falso @done(20-10-05 13:12)
 
+!Day
+✔ Verificar se o dia atual retorna verdadeiro @done(20-10-05 14:33)
+✔ Verificar se o proximo dia retorna falso @done(20-10-05 14:33)
+✔ Verificar se o dia anterior retorna falso @done(20-10-05 14:33)
+

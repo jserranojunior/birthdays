@@ -43,6 +43,22 @@ class VerifyBirthdays {
       return false;
     }
   }
+
+  get day() {
+    if (this.month) {
+      if (
+        this.dateInserted.getDate() === this.today.getDate() &&
+        this.dateInserted.getMonth() === this.today.getMonth()
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
   getFirstDayOfTheWeek() {
     this.firstDayOfTheWeek = this.today;
     do {
