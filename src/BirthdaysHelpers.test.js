@@ -72,3 +72,77 @@ describe("Births of the Month", () => {
     expect(VerifyBirthdays.month).toBeTruthy();
   });
 });
+
+describe("Births of the Week", () => {
+  test("Check if the birthday in the last day of week returns true", () => {
+    const today = new Date();
+
+    let DayOfTheWeek = today;
+    do {
+      DayOfTheWeek = new Date(
+        DayOfTheWeek.getFullYear(),
+        DayOfTheWeek.getMonth(),
+        DayOfTheWeek.getDate() + 1
+      );
+    } while (DayOfTheWeek.getDay() < 6);
+
+    const VerifyBirthdays = new BirthdaysHelpers(DayOfTheWeek);
+    expect(VerifyBirthdays.week).toBeTruthy();
+  });
+
+  test("Check if the birthday in the first day of week returns true", () => {
+    const today = new Date();
+
+    let firstDayOfTheWeek = today;
+    do {
+      firstDayOfTheWeek = new Date(
+        firstDayOfTheWeek.getFullYear(),
+        firstDayOfTheWeek.getMonth(),
+        firstDayOfTheWeek.getDate() - 1
+      );
+    } while (firstDayOfTheWeek.getDay() >= 1);
+
+    const VerifyBirthdays = new BirthdaysHelpers(firstDayOfTheWeek);
+    expect(VerifyBirthdays.week).toBeTruthy();
+  });
+
+  test("Check if the birthday in the next week returns false", () => {
+    const today = new Date();
+    let DayOfTheWeek = today;
+    do {
+      DayOfTheWeek = new Date(
+        DayOfTheWeek.getFullYear(),
+        DayOfTheWeek.getMonth(),
+        DayOfTheWeek.getDate() + 1
+      );
+    } while (DayOfTheWeek.getDay() < 6);
+    DayOfTheWeek = new Date(
+      DayOfTheWeek.getFullYear(),
+      DayOfTheWeek.getMonth(),
+      DayOfTheWeek.getDate() + 1
+    );
+    const VerifyBirthdays = new BirthdaysHelpers(DayOfTheWeek);
+    expect(VerifyBirthdays.week).toBeFalsy();
+  });
+
+  test("Check if the birthday in the previous week returns false", () => {
+    const today = new Date();
+
+    let DayOfTheWeek = today;
+    do {
+      DayOfTheWeek = new Date(
+        DayOfTheWeek.getFullYear(),
+        DayOfTheWeek.getMonth(),
+        DayOfTheWeek.getDate() - 1
+      );
+    } while (DayOfTheWeek.getDay() >= 1);
+
+    DayOfTheWeek = new Date(
+      DayOfTheWeek.getFullYear(),
+      DayOfTheWeek.getMonth(),
+      DayOfTheWeek.getDate() - 1
+    );
+    const VerifyBirthdays = new BirthdaysHelpers(DayOfTheWeek);
+    expect(VerifyBirthdays.week).toBeFalsy();
+  });
+});
