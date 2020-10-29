@@ -1,4 +1,9 @@
-import BirthdaysHelpers from "./BirthdaysHelpers.js";
+import BirthdaysHelpers from "../BirthdaysHelpers.js";
+import formatedDates from "../__mocks__/formatedDates";
+
+function builder(date) {
+  return new BirthdaysHelpers(formatedDates, date);
+}
 
 describe("Births of the Month", () => {
   test("Checks whether the date greater than the current month returns false", () => {
@@ -8,8 +13,7 @@ describe("Births of the Month", () => {
       today.getMonth() + 1,
       today.getDate()
     );
-    const VerifyBirthdays = new BirthdaysHelpers(nextMonth);
-
+    const VerifyBirthdays = builder(nextMonth);
     expect(VerifyBirthdays.month).toBeFalsy();
   });
 
@@ -20,28 +24,28 @@ describe("Births of the Month", () => {
       today.getMonth() - 1,
       today.getDate()
     );
-    const VerifyBirthdays = new BirthdaysHelpers(previousMonth);
+    const VerifyBirthdays = builder(previousMonth);
 
     expect(VerifyBirthdays.month).toBeFalsy();
   });
 
   test("Checks whether the current date returns true", () => {
     const today = new Date();
-    const VerifyBirthdays = new BirthdaysHelpers(today);
+    const VerifyBirthdays = builder(today);
     expect(VerifyBirthdays.month).toBeTruthy();
   });
 
   test("Checks whether the first day of the month returns true", () => {
     const today = new Date();
     const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
-    const VerifyBirthdays = new BirthdaysHelpers(firstDay);
+    const VerifyBirthdays = builder(firstDay);
     expect(VerifyBirthdays.month).toBeTruthy();
   });
 
   test("Checks whether the second day of the month returns true", () => {
     const today = new Date();
     const secondDay = new Date(today.getFullYear(), today.getMonth(), 2);
-    const VerifyBirthdays = new BirthdaysHelpers(secondDay);
+    const VerifyBirthdays = builder(secondDay);
     expect(VerifyBirthdays.month).toBeTruthy();
   });
 
@@ -52,7 +56,7 @@ describe("Births of the Month", () => {
       day: "2-digit",
       year: "numeric",
     });
-    const VerifyBirthdays = new BirthdaysHelpers(brDay);
+    const VerifyBirthdays = builder(brDay);
 
     expect(VerifyBirthdays.month).toBeTruthy();
   });
@@ -60,7 +64,7 @@ describe("Births of the Month", () => {
   test("Checks whether in US format returns true", () => {
     const today = new Date();
     const usDay = today.toLocaleDateString("fr-ca");
-    const VerifyBirthdays = new BirthdaysHelpers(usDay);
+    const VerifyBirthdays = new BirthdaysHelpers(null, usDay);
     expect(VerifyBirthdays.month).toBeTruthy();
   });
 
@@ -68,7 +72,7 @@ describe("Births of the Month", () => {
     const today = new Date();
     const nextYear = new Date(today.getFullYear() + 1, today.getMonth(), 1);
     const usDay = nextYear.toLocaleDateString("fr-ca");
-    const VerifyBirthdays = new BirthdaysHelpers(usDay);
+    const VerifyBirthdays = builder(usDay);
     expect(VerifyBirthdays.month).toBeTruthy();
   });
 });
@@ -86,7 +90,7 @@ describe("Births of the Week", () => {
       );
     } while (DayOfTheWeek.getDay() < 6);
 
-    const VerifyBirthdays = new BirthdaysHelpers(DayOfTheWeek);
+    const VerifyBirthdays = builder(DayOfTheWeek);
     expect(VerifyBirthdays.week).toBeTruthy();
   });
 
@@ -102,7 +106,10 @@ describe("Births of the Week", () => {
       );
     } while (firstDayOfTheWeek.getDay() >= 1);
 
-    const VerifyBirthdays = new BirthdaysHelpers(firstDayOfTheWeek);
+    const VerifyBirthdays = new BirthdaysHelpers(
+      formatedDates,
+      firstDayOfTheWeek
+    );
     expect(VerifyBirthdays.week).toBeTruthy();
   });
 
@@ -121,7 +128,7 @@ describe("Births of the Week", () => {
       DayOfTheWeek.getMonth(),
       DayOfTheWeek.getDate() + 1
     );
-    const VerifyBirthdays = new BirthdaysHelpers(DayOfTheWeek);
+    const VerifyBirthdays = builder(DayOfTheWeek);
     expect(VerifyBirthdays.week).toBeFalsy();
   });
 
@@ -142,7 +149,7 @@ describe("Births of the Week", () => {
       DayOfTheWeek.getMonth(),
       DayOfTheWeek.getDate() - 1
     );
-    const VerifyBirthdays = new BirthdaysHelpers(DayOfTheWeek);
+    const VerifyBirthdays = builder(DayOfTheWeek);
     expect(VerifyBirthdays.week).toBeFalsy();
   });
 });
@@ -150,7 +157,7 @@ describe("Births of the Week", () => {
 describe("Births of the Day", () => {
   test("Check if the birthday today return true", () => {
     const today = new Date();
-    const VerifyBirthdays = new BirthdaysHelpers(today);
+    const VerifyBirthdays = builder(today);
     expect(VerifyBirthdays.day).toBeTruthy();
   });
 
@@ -161,7 +168,7 @@ describe("Births of the Day", () => {
       today.getMonth(),
       today.getDate() + 1
     );
-    const VerifyBirthdays = new BirthdaysHelpers(Day);
+    const VerifyBirthdays = builder(Day);
     expect(VerifyBirthdays.day).toBeFalsy();
   });
 
@@ -172,7 +179,7 @@ describe("Births of the Day", () => {
       today.getMonth(),
       today.getDate() - 1
     );
-    const VerifyBirthdays = new BirthdaysHelpers(Day);
+    const VerifyBirthdays = builder(Day);
     expect(VerifyBirthdays.day).toBeFalsy();
   });
 });

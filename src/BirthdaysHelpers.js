@@ -1,8 +1,10 @@
 import formatedDates from "./FormatedDates/FormatedDates.js";
 
 class VerifyBirthdays {
-  constructor(dateInserted) {
-    this.dateInserted = formatedDates(dateInserted);
+  constructor(dateInUs = {}, dateInserted) {
+    this.dateInUs = dateInUs || formatedDates;
+
+    this.dateInserted = this.dateInUs(dateInserted);
     this.today = new Date();
     this.firstDayOfTheWeek;
   }
